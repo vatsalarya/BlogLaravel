@@ -6,6 +6,8 @@ import {
 	FormControl,
 	Stack,
 	Button,
+	FormLabel,
+	Switch 
 } from '@chakra-ui/react';
 import axios from "axios";
 import { EmailIcon, LockIcon } from '@chakra-ui/icons'
@@ -80,7 +82,12 @@ const LoginForm = (props) => {
 					/>
 				</InputGroup>
 			</FormControl>
-
+			<FormControl display="flex" alignItems="center">
+				<FormLabel htmlFor="email-alerts" mb="0">
+					Remember me
+				</FormLabel>
+				<Switch id="email-alerts" />
+			</FormControl>
 				<Button boxShadow='md' _active={{ boxShadow: 'lg' }} type="submit" bg="gray.200">
 					Login
 				</Button>
