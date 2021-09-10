@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 class AuthController extends Controller
 {
     public function login(Request $request){
-        Log::debug($request->only('email', 'password'));
+        // Log::debug($request->only('email', 'password'));
         try{
             if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
                 /** @var User user */
@@ -27,9 +27,9 @@ class AuthController extends Controller
                 ]);
             }
         }catch(\Exception $exception){
-            return response(['message' => $exception->getMessage()], status: 400);
+            return response(['message' => $exception->getMessage()], 400);
         }
-        return response(['message' => 'Invalid username/password'], status: 401);
+        return response(['message' => 'Invalid username/password'], 401);
     }
 
     public function user(){
@@ -48,7 +48,7 @@ class AuthController extends Controller
             return $user;
         }
         catch(\Exception $exception){
-            return response(['message' => $exception], status: 400);
+            return response(['message' => $exception], 400);
         }
     }
 }

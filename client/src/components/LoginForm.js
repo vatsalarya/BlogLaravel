@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import axios from "axios";
 import { EmailIcon, LockIcon } from '@chakra-ui/icons'
+import {Link} from 'react-router-dom';
 
 const LoginForm = (props) => {
 
@@ -83,6 +84,7 @@ const LoginForm = (props) => {
 				<Button boxShadow='md' _active={{ boxShadow: 'lg' }} type="submit" bg="gray.200">
 					Login
 				</Button>
+				<Link to="/forgot">Forgot Password?</Link>
 			</Stack>
 		</form>
 	);

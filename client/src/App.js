@@ -10,6 +10,8 @@ import Form from './pages/form';
 import Card from './pages/card.js';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import ForgotForm from './components/ForgotForm.js';
+import Blog from './components/Blog.js';
 
 function App() {
 
@@ -33,13 +35,22 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
     <BrowserRouter>
-      <Box fontSize="xl" justify='center' align='center'>
-        <Navbar/>
+      <Box fontSize="xl" justify='center' align='center' bg="gray.50">
+        <Navbar user={user}/>
+        <Route path="/home">
+          <Blog/>
+          <Blog/>
+          <Blog/>
+          <Blog/>
+        </Route>
         <Route path="/edit">
           <Card user={user}/>
         </Route>
         <Route path="/login">
           <Form user={user}></Form>
+        </Route>
+        <Route path="/forgot">
+          <ForgotForm/>
         </Route>
       </Box>
     </BrowserRouter>

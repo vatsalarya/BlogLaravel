@@ -27,15 +27,15 @@ const Form = (props) => {
 			<Text fontSize='lg' py={10}>Sign up or login to your account.</Text>
 			<Tabs isFitted variant='enclosed-colored' m={2} w='100%'>
 				<TabList>
-					<Tab>Sign up</Tab>
 					<Tab>Login</Tab>
+					<Tab>Sign up</Tab>
 				</TabList>
 				<TabPanels mt={3}>
 					<TabPanel>
-						<SingupForm />
+						<LoginForm />
 					</TabPanel>
 					<TabPanel>
-						<LoginForm />
+						<SingupForm />
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
