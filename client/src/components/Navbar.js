@@ -17,6 +17,22 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 
 const Navbar = (props) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  useEffect(()=>{
+		const config= {
+			headers: {
+				Authorization: 'Bearer ' + localStorage.getItem('token')
+			}
+		};
+		axios.get('http://127.0.0.1:8000/user', config)
+		.then(response =>{
+			console.log(response);
+			setUser(response.data);
+      localStorage.setItem('user', response.data)
+		})
+		.catch(error => {
+			console.log(error)
+		})
+	},[])
   return (
     <Flex
       w="100vw"
@@ -45,12 +61,12 @@ const Navbar = (props) => {
             <>
               <Menu>
                 <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                  <Flex isInline>
+                  <Flex >
                     <Image
-                      h="2vh"
+                      h="2.5vh"
                       src="https://cdn4.buysellads.net/uu/1/100164/1630700863-2021_RHD_Sandbox_ads260x200.png"
                       alt="Logo of Chakra-ui"
-                      rounded="full"
+                      borderRadius="50%"
                       mr="10px"
                     />
                     {/* <Avatar
@@ -66,7 +82,7 @@ const Navbar = (props) => {
                   {/* <MenuItem>Download</MenuItem> */}
                   <Link
                     to="/login"
-                    onClick={() => localStorage.setItem("token", "")}
+                    onClick={() => localStorage.clear()}
                   >
                     Logout
                   </Link>

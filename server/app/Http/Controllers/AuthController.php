@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use SebastianBergmann\Environment\Console;
 
 class AuthController extends Controller
 {
@@ -33,7 +34,7 @@ class AuthController extends Controller
     }
 
     public function user(){
-        // return 'hello';
+        // Log::debug(Auth::user()->blogs->first());
         return Auth::user();
     }
 

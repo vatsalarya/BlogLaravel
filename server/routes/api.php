@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ForgotController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,6 @@ Route::post('/hello', [HelloController::class,'index']);
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/register', [AuthController::class,'register']);
 Route::post('/forgot', [ForgotController::class,'forgot']);
+Route::get('/blogs', [BlogController::class,'index']);
+Route::get('/blogs/{blog}', [BlogController::class,'show']);
 Route::get('/user', [AuthController::class,'user'])->middleware('auth:sanctum');

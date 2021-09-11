@@ -26,6 +26,7 @@ function App() {
 		.then(response =>{
 			console.log(response);
 			setUser(response.data);
+      localStorage.setItem('user', response.data)
 		})
 		.catch(error => {
 			console.log(error)
@@ -50,7 +51,7 @@ function App() {
           <Form user={user}></Form>
         </Route>
         <Route path="/forgot">
-          <ForgotForm/>
+          <ForgotForm user={user}/>
         </Route>
       </Box>
     </BrowserRouter>

@@ -25,19 +25,12 @@ const LoginForm = (props) => {
 		axios.post('http://127.0.0.1:8000/login', formValues)
 			.then(response =>{
 				localStorage.setItem('token',response.data.token);
-				window.location = "/edit";
+				window.location = "/home";
 				// console.log(localStorage.getItem('token'));
 			})
 			.catch(error => {
 				console.log(error)
 			})
-		// axios.get('http://127.0.0.1:8000/user')
-		// 	.then(response =>{
-		// 		console.log(response)
-		// 	})
-		// 	.catch(error => {
-		// 		console.log(error)
-		// 	})
   }
 	return (
 		<form onSubmit={handleSubmit}>

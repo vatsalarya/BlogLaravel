@@ -29,13 +29,6 @@ const SingupForm = (props) => {
 			.catch(error => {
 				console.log(error)
 			})
-		// axios.post('http://127.0.0.1:8000/hello', 'hello')
-		// .then(response =>{
-		// 	console.log(response)
-		// })
-		// .catch(error => {
-		// 	console.log(error)
-		// })
   }
 
 	return (

@@ -1,14 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Text, Heading, Stack, Image } from "@chakra-ui/react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Blog = (props) => {
-  const [formValues, setFormValues] = useState({
-    email: "",
-    password: "",
-  });
-
+  
   return (
     <>
     <Stack w="80vh" mt="8vh" isInline>

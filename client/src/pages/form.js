@@ -12,7 +12,7 @@ import LoginForm from '../components/LoginForm';
 const Form = (props) => {
 
 	if(props.user){
-		window.location = "/edit";
+		window.location = "/home";
 	}
 
 	return (
@@ -24,7 +24,7 @@ const Form = (props) => {
 			bg="gray.100"
 			// bg="gray.400"
 			rounded='lg'>
-			<Text fontSize='lg' py={10}>Sign up or login to your account.</Text>
+			<Text fontSize='lg' py={10}>Please Sign up or login to your account.</Text>
 			<Tabs isFitted variant='enclosed-colored' m={2} w='100%'>
 				<TabList>
 					<Tab>Login</Tab>
