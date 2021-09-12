@@ -4,10 +4,11 @@ import axios from "axios";
 import { Link,Redirect } from "react-router-dom";
 import Blog from "../components/Blog";
 
-const Blogs = (props) => {
-  const [blogList, setBlogList] = useState([0]);
+const MyBlogs = (props) => {
+
+  const [blogList, setBlogList] = useState([]);
   useEffect(()=>{
-    axios.get('/blogs')
+    axios.get('/userblogs')
     .then(response =>{
       console.log(response.data);
       setBlogList(response.data);
@@ -29,4 +30,4 @@ const Blogs = (props) => {
   );
 };
 
-export default Blogs;
+export default MyBlogs;

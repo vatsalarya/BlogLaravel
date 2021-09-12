@@ -39,7 +39,7 @@ const Navbar = (props) => {
         <Stack spacing={8} justify="center" align="center" isInline>
           <Link to="/blogs">Blogs</Link>
           <Link to="/create">Create</Link>
-          <Link to="/edit">Edit</Link>
+          <Link to="/myblogs">My Blogs</Link>
         </Stack>
         <Flex align="center" justify="center">
           {props.user ? (

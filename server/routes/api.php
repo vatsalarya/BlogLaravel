@@ -28,6 +28,17 @@ Route::post('/hello', [HelloController::class,'index']);
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/register', [AuthController::class,'register']);
 Route::post('/forgot', [ForgotController::class,'forgot']);
-Route::get('/blogs', [BlogController::class,'index']);
-Route::get('/blogs/{blog}', [BlogController::class,'show']);
-Route::get('/user', [AuthController::class,'user'])->middleware('auth:sanctum');
+// Route::get('/blogs', [BlogController::class,'index']);
+// Route::get('/blogs/{blog}', [BlogController::class,'show']);
+// Route::get('/user', [AuthController::class,'user'])->middleware('auth:sanctum');
+
+
+Route::middleware('auth:sanctum')->group(function () {
+  Route::get('/user', [AuthController::class,'user']);
+  Route::get('/blogs', [BlogController::class,'index']);
+  Route::get('/userblogs', [BlogController::class,'userBlogs']);
+  Route::post('/blogs', [BlogController::class,'create']);
+  Route::post('/blogs/edit/{blog}', [BlogController::class,'edit']);
+  Route::get('/blogs/{blog}', [BlogController::class,'show']);
+  // Route::post('logout', [AuthController::class, 'logout']);
+});

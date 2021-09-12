@@ -13,6 +13,8 @@ import { useEffect, useState } from 'react';
 import ForgotForm from './pages/ForgotForm.js';
 import Blogs from './pages/Blogs.js';
 import Landing from './pages/Landing.js';
+import CreateBlog from './pages/CreateBlog.js';
+import MyBlogs from './pages/MyBlogs.js';
 
 function App() {
 
@@ -38,8 +40,11 @@ function App() {
         <Route path="/blogs">
           <Blogs user={user}/>
         </Route>
-        <Route path="/edit">
-          <Card user={user}/>
+        <Route path="/create">
+          <CreateBlog user={user}/>
+        </Route>
+        <Route path="/myblogs">
+          <MyBlogs user={user}/>
         </Route>
         <Route path="/login">
           <Form user={user} setUser={setUser}></Form>
