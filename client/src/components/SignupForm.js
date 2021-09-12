@@ -24,7 +24,8 @@ const SingupForm = (props) => {
     event.preventDefault();
 		axios.post('/register', formValues)
 			.then(response =>{
-				console.log(response)
+				localStorage.setItem('token',response.data.token);
+				window.location = "/blogs";
 			})
 			.catch(error => {
 				console.log(error)

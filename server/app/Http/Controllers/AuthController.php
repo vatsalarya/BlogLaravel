@@ -46,7 +46,12 @@ class AuthController extends Controller
                 'email' => $request->input('email'),
                 'password' => Hash::make($request->input('password')),
             ]);
-            return $user;
+            $token = $user->createToken('app')->plainTextToken;
+            return response([
+                'message' => 'Success!',
+                'token'=> $token,
+                'user'=> $user,
+            ]);
         }
         catch(\Exception $exception){
             return response(['message' => $exception], 400);

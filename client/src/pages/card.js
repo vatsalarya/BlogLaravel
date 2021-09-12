@@ -1,9 +1,11 @@
 import {
 	Box,
 } from '@chakra-ui/react';
-
+import { Link,Redirect } from "react-router-dom";
 const Card = (props) => {
-
+  if(!props.user){
+    return <Redirect to={'/login'}/>
+  }
 	if(props.user){
 		return (
 			<Box

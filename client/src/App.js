@@ -22,7 +22,7 @@ function App() {
 		.then(response =>{
 			console.log(response);
 			setUser(response.data);
-      localStorage.setItem('user', response.data)
+      localStorage.setItem('user', response.data);
 		})
 		.catch(error => {
 			console.log(error)
@@ -35,17 +35,14 @@ function App() {
       <Box fontSize="xl" justify='center' align='center' bg="gray.50">
         <Navbar user={user} setUser={setUser}/>
         <Switch>
-        <Route path="/home">
-          <Blogs/>
+        <Route path="/blogs">
+          <Blogs user={user}/>
         </Route>
         <Route path="/edit">
           <Card user={user}/>
         </Route>
         <Route path="/login">
-          <Form user={user}></Form>
-        </Route>
-        <Route path="/forgot">
-          <ForgotForm user={user}/>
+          <Form user={user} setUser={setUser}></Form>
         </Route>
         <Route path="/forgot">
           <ForgotForm user={user}/>

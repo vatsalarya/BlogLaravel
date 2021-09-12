@@ -37,7 +37,7 @@ const Navbar = (props) => {
           />
         </Box>
         <Stack spacing={8} justify="center" align="center" isInline>
-          <Link to="/home">Home</Link>
+          <Link to="/blogs">Blogs</Link>
           <Link to="/create">Create</Link>
           <Link to="/edit">Edit</Link>
         </Stack>

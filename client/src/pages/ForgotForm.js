@@ -10,9 +10,10 @@ import {
   Text
 } from '@chakra-ui/react';
 import axios from "axios";
+import { Link,Redirect } from "react-router-dom";
 import { EmailIcon} from '@chakra-ui/icons'
 
-const ForgotForm = () => {
+const ForgotForm = (props) => {
 
   const [formValues, setFormValues] = useState({
     email: "",
@@ -22,13 +23,17 @@ const ForgotForm = () => {
 		event.preventDefault();
 		axios.post('/forgot', formValues)
 			.then(response =>{
-				console.log(localStorage.getItem('token'));
-        setSuccess('Check your email!');
+				console.log(response);
+        setSuccess(response.data.message);
 			})
 			.catch(error => {
 				console.log(error);
 			})
   }
+	if(props.user){
+		return <Redirect to={'/'}/>
+	}
+
 	return (
     <Box mt="20vh"
     p={3}

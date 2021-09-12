@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	InputGroup,
 	InputLeftAddon,
@@ -6,46 +6,56 @@ import {
 	FormControl,
 	Stack,
 	Button,
-	FormLabel,
-	Switch 
+  Box,
+  Text,
+  Textarea,
+  Heading,
 } from '@chakra-ui/react';
 import axios from "axios";
-import { EmailIcon, LockIcon } from '@chakra-ui/icons'
-import {Link} from 'react-router-dom';
+import { EmailIcon} from '@chakra-ui/icons'
 
-const LoginForm = (props) => {
-
+const CreateBlog = (props) => {
+  const [success, setSuccess] = useState('');
   const [formValues, setFormValues] = useState({
-    email: "",
-    password: ""
+    title: "",
+    content: ""
   });
-
   function handleSubmit(event) {
 		event.preventDefault();
-		axios.post('/login', formValues)
+		axios.post('/forgot', formValues)
 			.then(response =>{
-				localStorage.setItem('token',response.data.token);
-				// props.setUser(response.data.user);
-				window.location = "/blogs";
+				console.log(localStorage.getItem('token'));
+        setSuccess('Check your email!');
 			})
 			.catch(error => {
-				console.log(error)
+				console.log(error);
+        setSuccess('Check your email!');
 			})
   }
+	// if(!props.user){
+
+	// }
 	return (
+    <Box mt="5vh"
+    p={3}
+    boxShadow='sm'
+    w="90%"
+    bg="gray.300"
+    rounded='lg'>
+    <Heading py="8vh">Create a blog</Heading>
 		<form onSubmit={handleSubmit}>
-			<Stack spacing={3}>
-			<FormControl isRequired>
+			<Stack spacing={3} w="95%">
+      <FormControl isRequired>
 				<InputGroup>
 					<InputLeftAddon children={<EmailIcon />}/>
 					<Input
 						bg="gray.50"
-						type='email'
-						placeholder='Email'
+						type='text'
+						placeholder='Title'
 						aria-label='Email input field'
-						value={formValues.email}
-						id="email"
-          	name="email"
+						value={formValues.title}
+						id="title"
+          	name="title"
           	onChange={(event) => {
 							setFormValues({
 								...formValues,
@@ -57,15 +67,14 @@ const LoginForm = (props) => {
 			</FormControl>
 			<FormControl isRequired>
 				<InputGroup>
-					<InputLeftAddon children={<LockIcon />} />
-					<Input
+					<InputLeftAddon children={<EmailIcon />}/>
+					<Textarea
 						bg="gray.50"
-						type='password'
-						placeholder='Password'
-						aria-label='Password input field'
-						value={formValues.password}
-						id="password"
-          	name="password"
+						placeholder='Content'
+						value={formValues.content}
+						id="content"
+            h="40vh"
+          	name="content"
           	onChange={(event) => {
 							setFormValues({
 								...formValues,
@@ -75,19 +84,14 @@ const LoginForm = (props) => {
 					/>
 				</InputGroup>
 			</FormControl>
-			<FormControl display="flex" alignItems="center">
-				<FormLabel htmlFor="email-alerts" mb="0">
-					Remember me
-				</FormLabel>
-				<Switch id="email-alerts" />
-			</FormControl>
+      <h1>{success}</h1>
 				<Button boxShadow='md' _active={{ boxShadow: 'lg' }} type="submit" bg="gray.200">
-					Login
+					Post
 				</Button>
-				<Link to="/forgot">Forgot Password?</Link>
 			</Stack>
 		</form>
+    </Box>
 	);
 };
 
-export default LoginForm;
+export default CreateBlog;

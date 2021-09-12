@@ -12,7 +12,7 @@ import LoginForm from '../components/LoginForm';
 const Form = (props) => {
 
 	if(props.user){
-		window.location = "/home";
+		window.location = "/";
 	}
 
 	return (
@@ -32,7 +32,7 @@ const Form = (props) => {
 				</TabList>
 				<TabPanels mt={3}>
 					<TabPanel>
-						<LoginForm />
+						<LoginForm setUser={props.setUser}/>
 					</TabPanel>
 					<TabPanel>
 						<SingupForm />

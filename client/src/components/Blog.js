@@ -4,7 +4,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Blog = (props) => {
-  
   return (
     <Stack w="80vh" mt="8vh" isInline>
     <Image src="https://picsum.photos/150/300" mr="15px"/>
