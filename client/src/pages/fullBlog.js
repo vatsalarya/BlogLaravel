@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Box, Text, Heading, Stack, Image, Button } from "@chakra-ui/react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
-import Blog from "../components/Blog";
 
 const FullBlog = (props) => {
   const [blogDetails, setBlogDetails] = useState({});
@@ -23,7 +21,7 @@ const FullBlog = (props) => {
   return (
     <Stack w="80vh" mt="8vh" isInline key={blogDetails.id} >
     {/* align="center"> */}
-    <Image src={'https://picsum.photos/seed/'+blogDetails.id+'/150/300'} mr="15px"/>
+    <Image src={'https://picsum.photos/seed/'+blogDetails.id+'/150/300'} boxSize="35vh" mr="15px"/>
       <Box align="left">
       <Heading  textAlign="left" >{blogDetails.title}</Heading>
       <Text textAlign="left" mt="1vh" mb="3vh">

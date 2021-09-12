@@ -45,7 +45,7 @@ const EditBlog = (props) => {
   }
   return (
     <Box mt="5vh" p={3} boxShadow="sm" w="90%" bg="gray.200" rounded="lg">
-      <Heading py="8vh">Create a blog</Heading>
+      <Heading py="8vh">Update blog</Heading>
       <form onSubmit={handleSubmit}>
         <Stack spacing={3} w="95%">
           <FormControl isRequired>
@@ -94,7 +94,7 @@ const EditBlog = (props) => {
             type="submit"
             bg="gray.200"
           >
-            Post
+            Update
           </Button>
         </Stack>
       </form>

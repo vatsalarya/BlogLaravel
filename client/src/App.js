@@ -10,6 +10,7 @@ import Form from './pages/Form';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ForgotForm from './pages/ForgotForm.js';
+import ResetPassword from './pages/ResetPassword.js';
 import Blogs from './pages/Blogs.js';
 import Landing from './pages/Landing.js';
 import CreateBlog from './pages/CreateBlog.js';
@@ -57,6 +58,9 @@ function App() {
         </Route>
         <Route path="/login">
           <Form user={user} setUser={setUser}></Form>
+        </Route>
+        <Route path="/reset/:id">
+          <ResetPassword user={user}/>
         </Route>
         <Route path="/forgot">
           <ForgotForm user={user}/>

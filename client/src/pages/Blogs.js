@@ -9,6 +9,7 @@ const Blogs = (props) => {
     axios.get('/blogs')
     .then(response =>{
       setBlogList(response.data);
+      console.log(response.data);
     })
     .catch(error => {
       console.log(error)

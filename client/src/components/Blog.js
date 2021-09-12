@@ -9,7 +9,7 @@ const Blog = (props) => {
     <Image src={'https://picsum.photos/seed/'+props.blogDetails.id+'/150/300'} mr="15px"/>
       <Box align="left">
       <Heading mb="3vh" textAlign="left"><a href={"http://localhost:3000/blogs/"+props.blogDetails.id}>{props.blogDetails.title}</a></Heading>
-      <Text textAlign="left" >
+      <Text textAlign="left" noOfLines={7}>
         {props.blogDetails.body}
       </Text>
       {props.blogDetails.user_id===props.user.id ? (<a href={"http://localhost:3000/blogs/edit/"+props.blogDetails.id}><Button my="10px" bg="green.100">Edit</Button></a>):""}

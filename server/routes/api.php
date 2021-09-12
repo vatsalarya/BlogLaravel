@@ -28,10 +28,7 @@ Route::post('/hello', [HelloController::class,'index']);
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/register', [AuthController::class,'register']);
 Route::post('/forgot', [ForgotController::class,'forgot']);
-// Route::get('/blogs', [BlogController::class,'index']);
-// Route::get('/blogs/{blog}', [BlogController::class,'show']);
-// Route::get('/user', [AuthController::class,'user'])->middleware('auth:sanctum');
-
+Route::post('/reset/{token}', [ForgotController::class,'reset']);
 
 Route::middleware('auth:sanctum')->group(function () {
   Route::get('/user', [AuthController::class,'user']);

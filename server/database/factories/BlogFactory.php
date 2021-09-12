@@ -25,7 +25,7 @@ class BlogFactory extends Factory
         return [
             'user_id' => $this->faker->numberBetween(1,10),
             'title' => $this->faker->sentence(),
-            'body' => $this->faker->paragraph(),
+            'body' => $this->faker->paragraph($nbSentences = 70, $variableNbSentences = true),
         ];
     }
 }
