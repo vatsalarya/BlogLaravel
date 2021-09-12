@@ -14,6 +14,8 @@ import Blogs from './pages/Blogs.js';
 import Landing from './pages/Landing.js';
 import CreateBlog from './pages/CreateBlog.js';
 import UserBlogs from './pages/UserBlogs.js';
+import FullBlog from './pages/FullBlog.js';
+import EditBlog from './pages/EditBlog.js';
 
 function App() {
 
@@ -30,13 +32,20 @@ function App() {
 			console.log(error)
 		})
 	},[])
+  document.body.style = 'background: #F7FAFC;';
 
   return (
     <ChakraProvider theme={theme}>
     <BrowserRouter>
-      <Box fontSize="xl" justify='center' align='center' bg="gray.50">
+      <Box fontSize="xl" justify='center' align='center'>
         <Navbar user={user} setUser={setUser}/>
         <Switch>
+        <Route path="/blogs/edit/:id">
+          <EditBlog user={user}/>
+        </Route>
+        <Route path="/blogs/:id">
+          <FullBlog user={user}/>
+        </Route>
         <Route path="/blogs">
           <Blogs user={user}/>
         </Route>

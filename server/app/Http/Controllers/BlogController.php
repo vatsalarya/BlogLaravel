@@ -16,7 +16,7 @@ class BlogController extends Controller
 
     public function show(Blog $blog){
         $author = $blog->user->first_name." ".$blog->user->last_name;
-        return ['id' => $blog->id, 'title' => $blog->title, 'body' => $blog->body, 'user_id' => $blog->user_id,  'author' => $author];
+        return ['id' => $blog->id, 'title' => $blog->title, 'body' => $blog->body, 'user_id' => $blog->user_id,  'author' => $author, 'id' => $blog->id];
     }
     public function userBlogs(){
         return Auth::user()->blogs;
@@ -38,6 +38,10 @@ class BlogController extends Controller
         catch(\Exception $exception){
             return response(['message' => $exception], 400);
         }
+    }
+    public function showEditable(Blog $blog){
+        $author = $blog->user->first_name." ".$blog->user->last_name;
+        return ['id' => $blog->id, 'title' => $blog->title, 'body' => $blog->body, 'user_id' => $blog->user_id,  'author' => $author, 'id' => $blog->id];
     }
     public function edit(Blog $blog){
         if(Auth::user()->id === $blog->user()->id){

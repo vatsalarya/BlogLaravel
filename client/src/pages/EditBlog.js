@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   InputGroup,
   InputLeftAddon,
@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { CalendarIcon, EditIcon } from "@chakra-ui/icons";
+import { Redirect } from "react-router-dom";
 
 const EditBlog = (props) => {
   const [formValues, setFormValues] = useState({
@@ -19,20 +20,21 @@ const EditBlog = (props) => {
     body: "",
   });
   const [success, setSuccess] = useState("");
-  // useEffect(()=>{
-    axios.get('/blogs/'+props.blog)
+  useEffect(()=>{
+    console.log("I am here");
+    axios.get(window.location.pathname)
     .then(response =>{
       setFormValues(response.data);
     })
     .catch(error => {
       console.log(error)
     })
-  // },[])
+  },[])
 
   function handleSubmit(event) {
     event.preventDefault();
     axios
-      .post("/blogs/edit/"+props.blog, formValues)
+      .post(window.location.pathname, formValues)
       .then((response) => {
         // setBlogList(response.data);
         setSuccess = "Posted!";
@@ -40,9 +42,6 @@ const EditBlog = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }
-  if(!props.user){
-    return <Redirect to={'/login'}/>
   }
   return (
     <Box mt="5vh" p={3} boxShadow="sm" w="90%" bg="gray.200" rounded="lg">

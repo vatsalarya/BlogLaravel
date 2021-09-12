@@ -30,16 +30,19 @@ const Navbar = (props) => {
     >
       <Flex w={["100vw", "90vw", "80vw", "80vw"]} justify="space-around">
         <Box>
+        <a href="/">
           <Image
             h="5vh"
             src="https://i.ibb.co/zVcCZsJ/logo.png"
             alt="Logo of Chakra-ui"
           />
+          </a>
         </Box>
         <Stack spacing={8} justify="center" align="center" isInline>
           <Link to="/blogs">Blogs</Link>
           <Link to="/create">Create</Link>
           <Link to="/userblogs">My Blogs</Link>
+          <a href="https://vatsalarya.github.io/portfolio/">About</a>
         </Stack>
         <Flex align="center" justify="center">
           {props.user ? (
