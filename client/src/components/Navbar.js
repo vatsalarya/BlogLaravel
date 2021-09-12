@@ -67,7 +67,7 @@ const Navbar = (props) => {
                   {/* <MenuItem>Download</MenuItem> */}
                   <Link
                     to="/login"
-                    onClick={() => {localStorage.clear();}}
+                    onClick={() => {localStorage.clear(); props.setUser(null);window.location = "/";}}
                   >
                     Logout
                   </Link>
