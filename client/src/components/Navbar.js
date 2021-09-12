@@ -16,23 +16,8 @@ import { Link } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
 const Navbar = (props) => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  useEffect(()=>{
-		const config= {
-			headers: {
-				Authorization: 'Bearer ' + localStorage.getItem('token')
-			}
-		};
-		axios.get('http://127.0.0.1:8000/user', config)
-		.then(response =>{
-			console.log(response);
-			setUser(response.data);
-      localStorage.setItem('user', response.data)
-		})
-		.catch(error => {
-			console.log(error)
-		})
-	},[])
+  // const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Flex
       w="100vw"
@@ -82,7 +67,7 @@ const Navbar = (props) => {
                   {/* <MenuItem>Download</MenuItem> */}
                   <Link
                     to="/login"
-                    onClick={() => localStorage.clear()}
+                    onClick={() => {localStorage.clear();}}
                   >
                     Logout
                   </Link>

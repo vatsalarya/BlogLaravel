@@ -20,7 +20,7 @@ const ForgotForm = () => {
   const [success, setSuccess] = useState('');
   function handleSubmit(event) {
 		event.preventDefault();
-		axios.post('http://127.0.0.1:8000/forgot', formValues)
+		axios.post('/forgot', formValues)
 			.then(response =>{
 				console.log(localStorage.getItem('token'));
         setSuccess('Check your email!');

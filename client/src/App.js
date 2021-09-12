@@ -5,24 +5,20 @@ import {
   theme,
 } from '@chakra-ui/react';
 import Navbar from './components/Navbar.js';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Form from './pages/form';
 import Card from './pages/card.js';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import ForgotForm from './components/ForgotForm.js';
-import Blog from './components/Blog.js';
+import ForgotForm from './pages/ForgotForm.js';
+import Blog from './pages/Blog.js';
+import Landing from './pages/landing.js';
 
 function App() {
 
   const [user, setUser] = useState('');
 	useEffect(()=>{
-		const config= {
-			headers: {
-				Authorization: 'Bearer ' + localStorage.getItem('token')
-			}
-		};
-		axios.get('http://127.0.0.1:8000/user', config)
+		axios.get('/user')
 		.then(response =>{
 			console.log(response);
 			setUser(response.data);
@@ -36,6 +32,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
     <BrowserRouter>
+    <Switch>
       <Box fontSize="xl" justify='center' align='center' bg="gray.50">
         <Navbar user={user}/>
         <Route path="/home">
@@ -53,7 +50,14 @@ function App() {
         <Route path="/forgot">
           <ForgotForm user={user}/>
         </Route>
+        <Route path="/forgot">
+          <ForgotForm user={user}/>
+        </Route>
+        <Route path="/">
+          <Landing user={user}/>
+        </Route>
       </Box>
+      </Switch>
     </BrowserRouter>
     </ChakraProvider>
   );

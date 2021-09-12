@@ -22,7 +22,7 @@ const LoginForm = (props) => {
 
   function handleSubmit(event) {
 		event.preventDefault();
-		axios.post('http://127.0.0.1:8000/login', formValues)
+		axios.post('/login', formValues)
 			.then(response =>{
 				localStorage.setItem('token',response.data.token);
 				window.location = "/home";
