@@ -7,14 +7,13 @@ import {
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Navbar from './components/Navbar.js';
 import Form from './pages/Form';
-import Card from './pages/Card.js';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ForgotForm from './pages/ForgotForm.js';
 import Blogs from './pages/Blogs.js';
 import Landing from './pages/Landing.js';
 import CreateBlog from './pages/CreateBlog.js';
-import MyBlogs from './pages/MyBlogs.js';
+import UserBlogs from './pages/UserBlogs.js';
 
 function App() {
 
@@ -22,9 +21,10 @@ function App() {
 	useEffect(()=>{
 		axios.get('/user')
 		.then(response =>{
-			console.log(response);
 			setUser(response.data);
+			// console.log(user.id);
       localStorage.setItem('user', response.data);
+			// console.log(localStorage.getItem('user'));
 		})
 		.catch(error => {
 			console.log(error)
@@ -43,8 +43,8 @@ function App() {
         <Route path="/create">
           <CreateBlog user={user}/>
         </Route>
-        <Route path="/myblogs">
-          <MyBlogs user={user}/>
+        <Route path="/userblogs">
+          <UserBlogs user={user}/>
         </Route>
         <Route path="/login">
           <Form user={user} setUser={setUser}></Form>

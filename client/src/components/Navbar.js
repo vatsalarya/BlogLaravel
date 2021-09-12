@@ -1,15 +1,14 @@
 import {
   Flex,
   Stack,
-  useColorMode,
-  IconButton,
+  // useColorMode,
   Box,
   Image,
-  Avatar,
+  // Avatar,
   Menu,
   MenuButton,
   MenuList,
-  MenuItem,
+  // MenuItem,
   Button,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -25,6 +24,7 @@ const Navbar = (props) => {
       justify="center"
       fontSize={["md", "lg", "xl", "xl"]}
       h="7vh"
+      // bg="green.50"
       boxShadow="md"
       p={2}
     >
@@ -39,7 +39,7 @@ const Navbar = (props) => {
         <Stack spacing={8} justify="center" align="center" isInline>
           <Link to="/blogs">Blogs</Link>
           <Link to="/create">Create</Link>
-          <Link to="/myblogs">My Blogs</Link>
+          <Link to="/userblogs">My Blogs</Link>
         </Stack>
         <Flex align="center" justify="center">
           {props.user ? (

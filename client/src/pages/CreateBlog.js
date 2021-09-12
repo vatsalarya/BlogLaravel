@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { CalendarIcon, EditIcon } from "@chakra-ui/icons";
+import { Redirect } from "react-router-dom";
 
 const CreateBlog = (props) => {
   const [success, setSuccess] = useState("");
@@ -24,7 +25,6 @@ const CreateBlog = (props) => {
     axios
       .post("/blogs", formValues)
       .then((response) => {
-        console.log(response.data);
         // setBlogList(response.data);
         setSuccess = "Posted!";
       })
@@ -32,9 +32,9 @@ const CreateBlog = (props) => {
         console.log(error);
       });
   }
-  // if(!props.user){
-
-  // }
+  if(!props.user){
+    return <Redirect to={'/login'}/>
+  }
   return (
     <Box mt="5vh" p={3} boxShadow="sm" w="90%" bg="gray.200" rounded="lg">
       <Heading py="8vh">Create a blog</Heading>

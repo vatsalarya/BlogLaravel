@@ -27,6 +27,7 @@ const LoginForm = (props) => {
 				localStorage.setItem('token',response.data.token);
 				// props.setUser(response.data.user);
 				window.location = "/blogs";
+				// console.log(localStorage.getItem('token'));
 			})
 			.catch(error => {
 				console.log(error)

@@ -7,10 +7,9 @@ import {
 	Stack,
 	Button,
   Box,
-  Text
 } from '@chakra-ui/react';
 import axios from "axios";
-import { Link,Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { EmailIcon} from '@chakra-ui/icons'
 
 const ForgotForm = (props) => {
@@ -23,7 +22,6 @@ const ForgotForm = (props) => {
 		event.preventDefault();
 		axios.post('/forgot', formValues)
 			.then(response =>{
-				console.log(response);
         setSuccess(response.data.message);
 			})
 			.catch(error => {

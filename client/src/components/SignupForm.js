@@ -25,6 +25,7 @@ const SingupForm = (props) => {
 		axios.post('/register', formValues)
 			.then(response =>{
 				localStorage.setItem('token',response.data.token);
+				// props.setUser(response.data.user);
 				window.location = "/blogs";
 			})
 			.catch(error => {
