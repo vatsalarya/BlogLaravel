@@ -25,6 +25,7 @@ class BlogController extends Controller
         // Log::debug($request->only('email', 'password'));
         Log::debug("Hello_1");
         try {
+            /** @var Blog $blog */
             $blog = new Blog;
             $blog->title = $request->input('title');
             $blog->body = $request->input('body');
@@ -46,7 +47,8 @@ class BlogController extends Controller
     public function edit(Request $request){
         // Log::debug(Auth::user()->id === $request->input('user_id'));
         if(Auth::user()->id === $request->input('user_id')){
-            $blog = Blog::find($request->id);
+            /** @var Blog $blog */
+            $blog = Blog::find($request->id)->first();
             Log::debug($blog);
             try {
                 $blog->title = $request->input('title');

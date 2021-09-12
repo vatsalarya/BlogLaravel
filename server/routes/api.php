@@ -5,7 +5,6 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ForgotController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HelloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +20,6 @@ use App\Http\Controllers\HelloController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
-Route::get('/hello', [HelloController::class,'store']);
-Route::post('/hello', [HelloController::class,'index']);
 
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/register', [AuthController::class,'register']);
