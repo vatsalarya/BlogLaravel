@@ -43,9 +43,24 @@ class BlogController extends Controller
         $author = $blog->user->first_name." ".$blog->user->last_name;
         return ['id' => $blog->id, 'title' => $blog->title, 'body' => $blog->body, 'user_id' => $blog->user_id,  'author' => $author, 'id' => $blog->id];
     }
-    public function edit(Blog $blog){
-        if(Auth::user()->id === $blog->user()->id){
-
+    public function edit(Request $request){
+        // Log::debug(Auth::user()->id === $request->input('user_id'));
+        if(Auth::user()->id === $request->input('user_id')){
+            $blog = Blog::find($request->id);
+            Log::debug($blog);
+            try {
+                $blog->title = $request->input('title');
+                $blog->body = $request->input('body');
+                $blog->user_id = Auth::user()->id;
+                $blog()->save();
+                return response([
+                    'message' => 'Success!',
+                    'blog'=> $blog
+                ]);
+            }
+            catch(\Exception $exception){
+                return response(['message' => $exception], 400);
+            }
         }
     }
 }

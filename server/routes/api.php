@@ -37,8 +37,8 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::get('/user', [AuthController::class,'user']);
   Route::get('/blogs', [BlogController::class,'index']);
   Route::get('/userblogs', [BlogController::class,'userBlogs']);
-  Route::post('/blogs', [BlogController::class,'create']);
   Route::post('/blogs/edit/{blog}', [BlogController::class,'edit']);
+  Route::post('/blogs', [BlogController::class,'create']);
   Route::get('/blogs/edit/{blog}', [BlogController::class,'showEditable']);
   Route::get('/blogs/{blog}', [BlogController::class,'show']);
   // Route::post('logout', [AuthController::class, 'logout']);
