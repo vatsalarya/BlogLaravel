@@ -30,9 +30,6 @@ const LoginForm = (props) => {
 				setResponseMessage(error.response.data.message)
 			})
   }
-	// if (props.user){
-	// 	return <Redirect to={"/"}/>
-	// }
 	return (
 		<form onSubmit={handleSubmit}>
 			<Stack spacing={3}>

@@ -26,7 +26,7 @@ console.log(props);
 			borderColor='gray.300'
 			fontSize="40px"
 			mt="40vh">
-			Hello, Please sign in or create an account to continue.
+			Hello, Please sign in.
 		</Box>
 	);
 };

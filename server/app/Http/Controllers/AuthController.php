@@ -10,11 +10,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
-  
+use Illuminate\Support\Facades\Log;
+
 class AuthController extends Controller
 {
     public function login(Request $request){
-        // Log::debug($request->only('email', 'password'));
+        Log::debug($request);
         try{
             if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
                 /** @var User user */
@@ -38,6 +39,7 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
+        Log::debug($request->only('email', 'password'));
         try {
             $user = User::create([
                 'first_name' => $request->input('first_name'),
