@@ -30,10 +30,7 @@ class BlogController extends Controller
             $blog->body = $request->input('body');
             $blog->user_id = Auth::user()->id;
             $blog()->save();
-            return response([
-                'message' => 'Success!',
-                'blog'=> $blog
-            ]);
+            return response(['message' => 'Success!', 'blog'=> $blog]);
         }
         catch(\Exception $exception){
             return response(['message' => $exception->getMessage()], 400);
@@ -54,13 +51,10 @@ class BlogController extends Controller
                 $blog->body = $request->input('body');
                 $blog->user_id = Auth::user()->id;
                 $blog()->save();
-                return response([
-                    'message' => 'Success!',
-                    'blog'=> $blog
-                ]);
+                return response(['message' => 'Success!', 'blog'=> $blog]);
             }
             catch(\Exception $exception){
-                return response(['message' => $exception], 400);
+                return response(['message' => $exception->getMessage()], 400);
             }
         }
         return response(['message' => 'You are not authorized to make this request.'], 401);

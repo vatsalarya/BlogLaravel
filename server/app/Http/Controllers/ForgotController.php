@@ -17,9 +17,7 @@ class ForgotController extends Controller
     public function forgot(Request $request){
         $email = $request->input('email');
         if(User::where('email', $email)->doesntExist()){
-            return response([
-                'message' => 'User doesnt exist!'
-            , 404]);
+            return response(['message' => 'User doesnt exist!', 404]);
         }
         $token = Str::random(10);
         try{
@@ -32,14 +30,10 @@ class ForgotController extends Controller
                 $message->from('vatsal@example.com', 'Vatsal');
                 $message->to('email@exapmle.com', 'someone');
             });
-            return response([
-                'message' => 'Check your email!'
-            ]);
+            return response(['message' => 'Check your email!']);
         }
         catch(\Exception $exception){
-            return response([
-                'message' => $exception
-            ], 400);
+            return response(['message' => $exception->getMessage()], 400);
         }
     }
 
@@ -50,22 +44,16 @@ class ForgotController extends Controller
 
         if(!$passwordResets = DB::table('password_resets')->where('token', $token)->first()){
             Log::debug('Yesssssssss');
-            return response([
-                'message' => 'Invalid Token!',
-            ], 400);
+            return response(['message' => 'Invalid Token!',], 400);
         }
         /** @var User $user */
         if(!$user = User::where('email', $passwordResets->email)->first()){
-            return response([
-                'message' => 'User doesnt exist!',
-            ], 404);
+            return response(['message' => 'User doesnt exist!',], 404);
         }
 
         $user->password = Hash::make($request->input('password'));
         $user->save();
-        return response([
-            'message' => 'Success!',
-        ]);
+        return response(['message' => 'Success!',]);
     }
 
 }
