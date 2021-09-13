@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
+// use App\Http\Requests\LoginRequest;
+// use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Log;
 class AuthController extends Controller
 {
     public function login(Request $request){
+        request()->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
         Log::debug($request);
         try{
             if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) {

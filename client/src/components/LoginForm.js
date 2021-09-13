@@ -23,7 +23,8 @@ const LoginForm = (props) => {
   const handleSubmit = (event) => {
 		event.preventDefault();
 		axios.post('/login', formValues)
-			.then(response =>{
+		.then(response =>{
+				console.log(response.data);
 				props.setUser(response.data.user);
 			})
 			.catch(error => {
