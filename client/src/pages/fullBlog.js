@@ -3,15 +3,15 @@ import { Box, Text, Heading, Stack, Image, Button } from "@chakra-ui/react";
 import axios from "axios";
 
 const FullBlog = (props) => {
+  const [responseMessage, setResponseMessage] = useState('');
   const [blogDetails, setBlogDetails] = useState({});
   useEffect(()=>{
     axios.get(window.location.pathname)
     .then(response =>{
-      setBlogDetails(response.data);
-      console.log(blogDetails);
+        setBlogDetails(response.data);
     })
     .catch(error => {
-      console.log(error)
+				setResponseMessage(error.response.data.message)
     })
   },[])
 
@@ -20,6 +20,7 @@ const FullBlog = (props) => {
   // }
   return (
     <Stack w="80vh" mt="8vh" isInline key={blogDetails.id} >
+			<h3 color="red">{responseMessage}</h3>
     {/* align="center"> */}
     <Image src={'https://picsum.photos/seed/'+blogDetails.id+'/150/300'} boxSize="35vh" mr="15px"/>
       <Box align="left">

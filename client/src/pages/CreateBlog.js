@@ -15,7 +15,7 @@ import { CalendarIcon, EditIcon } from "@chakra-ui/icons";
 import { Redirect } from "react-router-dom";
 
 const CreateBlog = (props) => {
-  const [success, setSuccess] = useState("");
+  const [responseMessage, setResponseMessage] = useState('');
   const [formValues, setFormValues] = useState({
     title: "",
     body: "",
@@ -26,10 +26,10 @@ const CreateBlog = (props) => {
       .post("/blogs", formValues)
       .then((response) => {
         // setBlogList(response.data);
-        setSuccess = "Posted!";
+        setResponseMessage = "Posted!";
       })
       .catch((error) => {
-        console.log(error);
+				setResponseMessage(error.response.data.message)
       });
   }
   if(!props.user){
@@ -79,7 +79,7 @@ const CreateBlog = (props) => {
               />
             </InputGroup>
           </FormControl>
-          <h1>{success}</h1>
+			    <h3 color="red">{responseMessage}</h3>
           <Button
             boxShadow="md"
             _active={{ boxShadow: "lg" }}

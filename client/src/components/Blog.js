@@ -1,8 +1,6 @@
 import { Box, Text, Heading, Stack, Image, Button } from "@chakra-ui/react";
 
 const Blog = (props) => {
-  // console.log(props.user.id);
-  // console.log(props.blogDetails.user_id);
   return (
     <Stack w="80vh" mt="8vh" isInline key={props.blogDetails.id} >
     {/* align="center"> */}

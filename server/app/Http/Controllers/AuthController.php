@@ -9,8 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
-
+  
 class AuthController extends Controller
 {
     public function login(Request $request){
@@ -53,7 +52,7 @@ class AuthController extends Controller
             ]);
         }
         catch(\Exception $exception){
-            return response(['message' => $exception], 400);
+            return response(['message' => $exception->getMessage()], 400);
         }
     }
 

@@ -12,7 +12,7 @@ import axios from "axios";
 import { LockIcon } from '@chakra-ui/icons'
 
 const ResetPassword = (props) => {
-
+  const [responseMessage, setResponseMessage] = useState('');
   const [formValues, setFormValues] = useState({
     'password': "",
     'conform_password': "",
@@ -22,10 +22,10 @@ const ResetPassword = (props) => {
 		event.preventDefault();
 		axios.post(window.location.pathname, formValues)
 			.then(response =>{
-				window.location = "/login";
+				setResponseMessage("Password Reset Successful")
 			})
 			.catch(error => {
-				console.log(error)
+				setResponseMessage(error.response.data.message)
 			})
   }
 	return (
@@ -76,6 +76,7 @@ const ResetPassword = (props) => {
 					/>
 				</InputGroup>
 			</FormControl>
+			<h3 color="red">{responseMessage}</h3>
 				<Button boxShadow='md' _active={{ boxShadow: 'lg' }} type="submit" bg="gray.200">
 					Reset
 				</Button>

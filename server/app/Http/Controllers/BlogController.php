@@ -22,7 +22,6 @@ class BlogController extends Controller
         return Auth::user()->blogs;
     }
     public function create(Request $request){
-        // Log::debug($request->only('email', 'password'));
         Log::debug("Hello_1");
         try {
             /** @var Blog $blog */
@@ -37,7 +36,7 @@ class BlogController extends Controller
             ]);
         }
         catch(\Exception $exception){
-            return response(['message' => $exception], 400);
+            return response(['message' => $exception->getMessage()], 400);
         }
     }
     public function showEditable(Blog $blog){
@@ -64,5 +63,6 @@ class BlogController extends Controller
                 return response(['message' => $exception], 400);
             }
         }
+        return response(['message' => 'You are not authorized to make this request.'], 401);
     }
 }

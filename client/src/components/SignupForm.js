@@ -13,6 +13,7 @@ import axios from "axios";
 import { EmailIcon, LockIcon, InfoIcon } from '@chakra-ui/icons'
 
 const SingupForm = (props) => {
+  const [responseMessage, setResponseMessage] = useState('');
 	const [formValues, setFormValues] = useState({
 		first_name: "",
 		last_name: "",
@@ -29,7 +30,7 @@ const SingupForm = (props) => {
 				window.location = "/blogs";
 			})
 			.catch(error => {
-				console.log(error)
+				setResponseMessage(error.response.data.message)
 			})
   }
 
@@ -112,6 +113,7 @@ const SingupForm = (props) => {
 					/>
 				</InputGroup>
 			</FormControl>
+			<h3 color="red">{responseMessage}</h3>
 			<Button boxShadow='md' _active={{ boxShadow: 'lg' }} type="submit" bg="gray.200">
 					Sign Up
 			</Button>

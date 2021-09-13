@@ -32,8 +32,6 @@ class Login extends Component{
 
     }
 
-
-
     render(){
         return(
         <Center h="500px">

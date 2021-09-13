@@ -15,11 +15,11 @@ import { CalendarIcon, EditIcon } from "@chakra-ui/icons";
 import { Redirect } from "react-router-dom";
 
 const EditBlog = (props) => {
+  const [responseMessage, setResponseMessage] = useState('');
   const [formValues, setFormValues] = useState({
     title: "",
     body: "",
   });
-  const [success, setSuccess] = useState("");
   useEffect(()=>{
     console.log("I am here");
     axios.get(window.location.pathname)
@@ -27,7 +27,7 @@ const EditBlog = (props) => {
       setFormValues(response.data);
     })
     .catch(error => {
-      console.log(error)
+        setResponseMessage("You are not authorized to make this request!");
     })
   },[])
 
@@ -37,10 +37,10 @@ const EditBlog = (props) => {
       .post(window.location.pathname, formValues)
       .then((response) => {
         // setBlogList(response.data);
-        setSuccess = "Posted!";
+        setResponseMessage("Posted!");
       })
       .catch((error) => {
-        console.log(error);
+        setResponseMessage(error.response.data.message)
       });
   }
   return (
@@ -87,7 +87,7 @@ const EditBlog = (props) => {
               />
             </InputGroup>
           </FormControl>
-          <h1>{success}</h1>
+			    <h3 color="red">{responseMessage}</h3>
           <Button
             boxShadow="md"
             _active={{ boxShadow: "lg" }}

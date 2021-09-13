@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import Blog from "../components/Blog";
 
 const UserBlogs = (props) => {
-
+  const [responseMessage, setResponseMessage] = useState('');
   const [blogList, setBlogList] = useState([]);
   useEffect(()=>{
     axios.get('/userblogs')
@@ -12,7 +12,7 @@ const UserBlogs = (props) => {
       setBlogList(response.data);
     })
     .catch(error => {
-      console.log(error)
+				setResponseMessage(error.response.data.message)
     })
   },[])
 
@@ -21,6 +21,7 @@ const UserBlogs = (props) => {
   }
   return (
     <div>
+			<h3 color="red">{responseMessage}</h3>
     {blogList.map((blogDetails) => (
       <Blog blogDetails={blogDetails} user={props.user}/>
     ))}

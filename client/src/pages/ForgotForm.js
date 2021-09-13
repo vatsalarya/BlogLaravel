@@ -13,19 +13,18 @@ import { Redirect } from "react-router-dom";
 import { EmailIcon} from '@chakra-ui/icons'
 
 const ForgotForm = (props) => {
-
+  const [responseMessage, setResponseMessage] = useState('');
   const [formValues, setFormValues] = useState({
     email: "",
   });
-  const [success, setSuccess] = useState('');
   function handleSubmit(event) {
 		event.preventDefault();
 		axios.post('/forgot', formValues)
 			.then(response =>{
-        setSuccess(response.data.message);
+				setResponseMessage(response.data.message)
 			})
 			.catch(error => {
-				console.log(error);
+				setResponseMessage(error.response.data.message);
 			})
   }
 	if(props.user){
@@ -62,7 +61,7 @@ const ForgotForm = (props) => {
 					/>
 				</InputGroup>
 			</FormControl>
-      <h1>{success}</h1>
+			<h3 color="red">{responseMessage}</h3>
 				<Button boxShadow='md' _active={{ boxShadow: 'lg' }} type="submit" bg="gray.200">
 					Send Reset Link
 				</Button>

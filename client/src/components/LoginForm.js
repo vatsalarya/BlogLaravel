@@ -14,7 +14,7 @@ import { EmailIcon, LockIcon } from '@chakra-ui/icons'
 import {Link} from 'react-router-dom';
 
 const LoginForm = (props) => {
-
+  const [responseMessage, setResponseMessage] = useState('');
   const [formValues, setFormValues] = useState({
     email: "",
     password: ""
@@ -27,10 +27,9 @@ const LoginForm = (props) => {
 				localStorage.setItem('token',response.data.token);
 				// props.setUser(response.data.user);
 				window.location = "/blogs";
-				// console.log(localStorage.getItem('token'));
 			})
 			.catch(error => {
-				console.log(error)
+				setResponseMessage(error.response.data.message)
 			})
   }
 	return (
@@ -82,6 +81,7 @@ const LoginForm = (props) => {
 				</FormLabel>
 				<Switch id="email-alerts" />
 			</FormControl>
+			<h3 color="red">{responseMessage}</h3>
 				<Button boxShadow='md' _active={{ boxShadow: 'lg' }} type="submit" bg="gray.200">
 					Login
 				</Button>
