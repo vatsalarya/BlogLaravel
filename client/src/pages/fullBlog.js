@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Box, Text, Heading, Stack, Image, Button } from "@chakra-ui/react";
+import { Redirect } from 'react-router';
 import axios from "axios";
 
 const FullBlog = (props) => {
@@ -15,9 +16,9 @@ const FullBlog = (props) => {
     })
   },[])
 
-  // if(!props.user){
-  //   return <Redirect to={'/login'}/>
-  // }
+  if(!props.user){
+    return <Redirect to={'/login'}/>
+  }
   return (
     <Stack w="80vh" mt="8vh" isInline key={blogDetails.id} >
 			<h3 color="red">{responseMessage}</h3>

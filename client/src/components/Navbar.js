@@ -12,11 +12,22 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
 const Navbar = (props) => {
   // const { colorMode, toggleColorMode } = useColorMode();
-
+  const handleClick = (event) => {
+		event.preventDefault();
+		axios.post('/logout')
+			.then(response =>{
+        localStorage.clear();
+				props.setUser(null);
+			})
+			.catch(error => {
+				console.log(error);
+			})
+  }
   return (
     <Flex
       w="100vw"
@@ -34,7 +45,7 @@ const Navbar = (props) => {
             <Image
               h="5vh"
               src="https://i.ibb.co/zVcCZsJ/logo.png"
-              alt="Logo of Chakra-ui"
+              alt="Vatsal's Blog"
             />
           </a>
         </Box>
@@ -44,10 +55,7 @@ const Navbar = (props) => {
               <Link to="/blogs">Blogs</Link>
               <Link to="/create">Create</Link>
               <Link to="/userblogs">My Blogs</Link>
-            </>
-          ) : (
-            ""
-          )}
+            </>) : ("")}
           <a href="https://vatsalarya.github.io/portfolio/">About</a>
         </Stack>
         <Flex align="center" justify="center">
@@ -59,7 +67,7 @@ const Navbar = (props) => {
                     <Image
                       h="2.5vh"
                       src="https://cdn4.buysellads.net/uu/1/100164/1630700863-2021_RHD_Sandbox_ads260x200.png"
-                      alt="Logo of Chakra-ui"
+                      alt="Avatar"
                       borderRadius="50%"
                       mr="10px"
                     />
@@ -74,16 +82,7 @@ const Navbar = (props) => {
                 </MenuButton>
                 <MenuList>
                   {/* <MenuItem>Download</MenuItem> */}
-                  <Link
-                    to="/login"
-                    onClick={() => {
-                      localStorage.clear();
-                      props.setUser(null);
-                      window.location = "/";
-                    }}
-                  >
-                    Logout
-                  </Link>
+                  <Link to="/login" onClick={handleClick}>Logout</Link>
                 </MenuList>
               </Menu>
             </>

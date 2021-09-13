@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import axios from "axios";
 import { LockIcon } from '@chakra-ui/icons'
+import { Redirect } from 'react-router';
 
 const ResetPassword = (props) => {
   const [responseMessage, setResponseMessage] = useState('');
@@ -18,7 +19,7 @@ const ResetPassword = (props) => {
     'conform_password': "",
   });
 
-  function handleSubmit(event) {
+	const handleSubmit = (event) => {
 		event.preventDefault();
 		axios.post(window.location.pathname, formValues)
 			.then(response =>{
@@ -28,6 +29,9 @@ const ResetPassword = (props) => {
 				setResponseMessage(error.response.data.message)
 			})
   }
+	if(props.user){
+		return <Redirect to={'/'}/>
+	}
 	return (
     <Box mt="20vh"
     p={3}

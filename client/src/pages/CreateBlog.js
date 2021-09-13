@@ -20,13 +20,12 @@ const CreateBlog = (props) => {
     title: "",
     body: "",
   });
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     axios
       .post("/blogs", formValues)
       .then((response) => {
         setResponseMessage("Posted!");
-        window.location = "/";
       })
       .catch((error) => {
 				// setResponseMessage(error.response.data.message)
@@ -34,6 +33,9 @@ const CreateBlog = (props) => {
   }
   if(!props.user){
     return <Redirect to={'/login'}/>
+  }
+  if(responseMessage==="Posted!"){
+    return <Redirect to={'/userblogs'}/>
   }
   return (
     <Box mt="5vh" p={3} boxShadow="sm" w="90%" bg="gray.200" rounded="lg">

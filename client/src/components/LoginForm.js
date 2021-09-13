@@ -20,18 +20,19 @@ const LoginForm = (props) => {
     password: ""
   });
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
 		event.preventDefault();
 		axios.post('/login', formValues)
 			.then(response =>{
-				localStorage.setItem('token',response.data.token);
-				// props.setUser(response.data.user);
-				window.location = "/blogs";
+				props.setUser(response.data.user);
 			})
 			.catch(error => {
 				setResponseMessage(error.response.data.message)
 			})
   }
+	// if (props.user){
+	// 	return <Redirect to={"/"}/>
+	// }
 	return (
 		<form onSubmit={handleSubmit}>
 			<Stack spacing={3}>

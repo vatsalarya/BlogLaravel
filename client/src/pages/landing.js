@@ -26,7 +26,7 @@ console.log(props);
 			borderColor='gray.300'
 			fontSize="40px"
 			mt="40vh">
-			Hello world
+			Hello, Please sign in or create an account to continue.
 		</Box>
 	);
 };

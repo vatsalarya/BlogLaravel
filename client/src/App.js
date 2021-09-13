@@ -19,13 +19,11 @@ import FullBlog from './pages/FullBlog.js';
 import EditBlog from './pages/EditBlog.js';
 
 function App() {
-
   const [user, setUser] = useState(null);
 	useEffect(()=>{
 		axios.get('/user')
 		.then(response =>{
 			setUser(response.data);
-			// console.log(user.id);
       localStorage.setItem('user', response.data);
 			// console.log(localStorage.getItem('user'));
 		})

@@ -21,7 +21,6 @@ const EditBlog = (props) => {
     body: "",
   });
   useEffect(()=>{
-    console.log("I am here");
     axios.get(window.location.pathname)
     .then(response =>{
       setFormValues(response.data);
@@ -31,18 +30,22 @@ const EditBlog = (props) => {
     })
   },[])
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     axios
       .post(window.location.pathname, formValues)
       .then((response) => {
-        // setBlogList(response.data);
         setResponseMessage("Updated!");
-        window.location("/");
       })
       .catch((error) => {
         setResponseMessage(error.response.data.message)
       });
+  }
+  if(!props.user){
+    return <Redirect to={'/login'}/>
+  }
+  if(responseMessage==="Updated!"){
+    return <Redirect to={'/userblogs'}/>
   }
   return (
     <Box mt="5vh" p={3} boxShadow="sm" w="90%" bg="gray.200" rounded="lg">

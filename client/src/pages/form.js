@@ -8,13 +8,13 @@
 } from '@chakra-ui/react';
 import SingupForm from '../components/SignupForm';
 import LoginForm from '../components/LoginForm';
+import { Redirect } from 'react-router';
 
 const Form = (props) => {
 
 	if(props.user){
-		window.location = "/";
+		return <Redirect to={'/'}/>
 	}
-
 	return (
 		<Box
 			mt="20vh"

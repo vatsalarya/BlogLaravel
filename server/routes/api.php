@@ -28,11 +28,11 @@ Route::post('/reset/{token}', [ForgotController::class,'reset']);
 
 Route::middleware('auth:sanctum')->group(function () {
   Route::get('/user', [AuthController::class,'user']);
+  Route::post('/logout', [AuthController::class,'logout']);
   Route::get('/blogs', [BlogController::class,'index']);
   Route::get('/userblogs', [BlogController::class,'userBlogs']);
   Route::post('/blogs/edit/{blog}', [BlogController::class,'edit']);
   Route::post('/blogs', [BlogController::class,'create']);
   Route::get('/blogs/edit/{blog}', [BlogController::class,'showEditable']);
   Route::get('/blogs/{blog}', [BlogController::class,'show']);
-  // Route::post('logout', [AuthController::class, 'logout']);
 });

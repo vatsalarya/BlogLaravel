@@ -8,6 +8,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
   
 class AuthController extends Controller
@@ -19,11 +20,11 @@ class AuthController extends Controller
                 /** @var User user */
                 $user = Auth::user();
                 $token = $user->createToken('app')->plainTextToken;
+                $cookie = cookie('jwt', $token, 60*24);
                 return response([
                     'message' => 'Success!',
-                    'token'=> $token,
                     'user'=> $user,
-                ]);
+                ])->withCookie($cookie);
             }
         }catch(\Exception $exception){
             return response(['message' => $exception->getMessage()], 400);
@@ -45,15 +46,22 @@ class AuthController extends Controller
                 'password' => Hash::make($request->input('password')),
             ]);
             $token = $user->createToken('app')->plainTextToken;
+            $cookie = cookie('jwt', $token, 60*24);
             return response([
                 'message' => 'Success!',
-                'token'=> $token,
                 'user'=> $user,
-            ]);
+            ])->withCookie($cookie);
         }
         catch(\Exception $exception){
             return response(['message' => $exception->getMessage()], 400);
         }
+    }
+
+    public function logout(){
+        $cookie = Cookie::forget('jwt');
+        return response([
+            'message' => 'Success'
+        ])->withCookie($cookie);
     }
 
 }

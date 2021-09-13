@@ -17,7 +17,7 @@ const ForgotForm = (props) => {
   const [formValues, setFormValues] = useState({
     email: "",
   });
-  function handleSubmit(event) {
+	const handleSubmit = (event) => {
 		event.preventDefault();
 		axios.post('/forgot', formValues)
 			.then(response =>{
@@ -30,7 +30,6 @@ const ForgotForm = (props) => {
 	if(props.user){
 		return <Redirect to={'/'}/>
 	}
-
 	return (
     <Box mt="20vh"
     p={3}
