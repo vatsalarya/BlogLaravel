@@ -25,11 +25,11 @@ const CreateBlog = (props) => {
     axios
       .post("/blogs", formValues)
       .then((response) => {
-        // setBlogList(response.data);
-        setResponseMessage = "Posted!";
+        setResponseMessage("Posted!");
+        window.location = "/";
       })
       .catch((error) => {
-				setResponseMessage(error.response.data.message)
+				// setResponseMessage(error.response.data.message)
       });
   }
   if(!props.user){

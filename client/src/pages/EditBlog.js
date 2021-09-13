@@ -37,7 +37,8 @@ const EditBlog = (props) => {
       .post(window.location.pathname, formValues)
       .then((response) => {
         // setBlogList(response.data);
-        setResponseMessage("Posted!");
+        setResponseMessage("Updated!");
+        window.location("/");
       })
       .catch((error) => {
         setResponseMessage(error.response.data.message)

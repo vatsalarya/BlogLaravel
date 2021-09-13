@@ -43,14 +43,13 @@ class ForgotController extends Controller
         $token = request('token');
 
         if(!$passwordResets = DB::table('password_resets')->where('token', $token)->first()){
-            Log::debug('Yesssssssss');
-            return response(['message' => 'Invalid Token!',], 400);
+            return response(['message' => 'The token is invalid!',], 400);
         }
         /** @var User $user */
         if(!$user = User::where('email', $passwordResets->email)->first()){
             return response(['message' => 'User doesnt exist!',], 404);
         }
-
+        DB::table('password_resets')->where('token', $token)->delete();
         $user->password = Hash::make($request->input('password'));
         $user->save();
         return response(['message' => 'Success!',]);
