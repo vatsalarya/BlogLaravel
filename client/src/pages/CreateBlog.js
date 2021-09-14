@@ -28,7 +28,7 @@ const CreateBlog = (props) => {
         setResponseMessage("Posted!");
       })
       .catch((error) => {
-				// setResponseMessage(error.response.data.message)
+				setResponseMessage(error.response.data)
       });
   }
   if(!props.user){

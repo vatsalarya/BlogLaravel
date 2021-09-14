@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Navbar from './components/Navbar.js';
-import Form from './pages/Form';
+import Form from './pages/Form.js';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ForgotForm from './pages/ForgotForm.js';
@@ -20,9 +20,11 @@ import EditBlog from './pages/EditBlog.js';
 
 function App() {
   const [user, setUser] = useState(null);
+
 	useEffect(()=>{
 		axios.get('/user')
 		.then(response =>{
+      console.log(user);
 			setUser(response.data);
       localStorage.setItem('user', response.data);
 			// console.log(localStorage.getItem('user'));

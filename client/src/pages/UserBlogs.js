@@ -12,7 +12,7 @@ const UserBlogs = (props) => {
       setBlogList(response.data);
     })
     .catch(error => {
-				setResponseMessage(error.response.data.message)
+				setResponseMessage(error.response.data)
     })
   },[])
 

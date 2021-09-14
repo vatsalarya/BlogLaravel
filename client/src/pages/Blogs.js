@@ -5,14 +5,14 @@ import Blog from "../components/Blog";
 
 const Blogs = (props) => {
   const [responseMessage, setResponseMessage] = useState('');
-  const [blogList, setBlogList] = useState([{}]);
+  const [blogList, setBlogList] = useState([]);
   useEffect(()=>{
     axios.get('/blogs')
     .then(response =>{
       setBlogList(response.data);
     })
     .catch(error => {
-      setResponseMessage(error.response.data.message)
+      setResponseMessage(error.response.data)
     })
   },[])
 

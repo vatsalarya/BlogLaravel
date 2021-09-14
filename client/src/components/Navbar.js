@@ -25,7 +25,7 @@ const Navbar = (props) => {
 				props.setUser(null);
 			})
 			.catch(error => {
-				console.log(error);
+				console.log(error.response.data);
 			})
   }
   return (

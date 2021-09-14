@@ -17,10 +17,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/register', [AuthController::class,'register']);
 Route::post('/forgot', [ForgotController::class,'forgot']);
@@ -29,10 +25,10 @@ Route::post('/reset/{token}', [ForgotController::class,'reset']);
 Route::middleware('auth:sanctum')->group(function () {
   Route::get('/user', [AuthController::class,'user']);
   Route::post('/logout', [AuthController::class,'logout']);
-  Route::get('/blogs', [BlogController::class,'index']);
   Route::get('/userblogs', [BlogController::class,'userBlogs']);
-  Route::post('/blogs/edit/{blog}', [BlogController::class,'edit']);
-  Route::post('/blogs', [BlogController::class,'create']);
+  Route::post('/blogs/edit/{id}', [BlogController::class,'edit']);
   Route::get('/blogs/edit/{blog}', [BlogController::class,'showEditable']);
   Route::get('/blogs/{blog}', [BlogController::class,'show']);
+  Route::get('/blogs', [BlogController::class,'index']);
+  Route::post('/blogs', [BlogController::class,'create']);
 });
